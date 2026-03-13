@@ -22,6 +22,10 @@ It runs fully offline/local with Ollama, LM studio, HuggingFace or connects to a
 
 While the inspiration was always to know how current agentic coding agents work, it grew to a pretty cool tool that you can use to essentially replace any other git tool out there while still being decently reliable with smaller models.
 
+I still need to do a lot more testing, especially with smaller models to see how far they can go compared to other SOTA models. So I am planning on doing some benchmarks with different tier models to kind of have a better understanding of some of the capabilities.
+
+But for now I wanted to both share the tool, and try to document the structure, and a bit of the [architecture inspiration](#architecture-inspiration).
+
 
 ![System Overview](docs/assets/project%20structure.png)
 
@@ -36,9 +40,9 @@ While the inspiration was always to know how current agentic coding agents work,
 | **Smart Context** | BM25 + SQLite retrieval — index once, ranked context on every request |
 | **Knowledge Map** | Managed `AGENTS.md` repo map + deterministic `.MyGit/knowledge/` shard docs |
 | **Session Memory** | Durable `Last` / `Next` working memory in `.MyGit/MyGit.md` across sessions |
-| **Thought Map** | Shift+Tab planning mode — generate a DAG, refine, then hand off to the agent |
+| **Thought Map (Plan Mode)** | Shift+Tab planning mode — generate a DAG, refine, then hand off to the agent |
 | **PR Review** | GitHub fetch, AI analysis with inline comments, SQLite cache, optional post-back |
-| **Merge Conflicts** | Two-pane conflict view, accept-ours / accept-theirs, LLM-assisted smart merge |
+| **Merge Conflicts** | Two-pane conflict view, accept-ours / accept-theirs, AI-assisted smart merge |
 | **Git Recipes** | 15+ structured workflows: cross-repo fetch, history search, fork sync, branch ops |
 | **Cross-Branch Search** | Find which branch introduced a feature, deleted a file, or contains a commit |
 | **Harness Engineering** | Cross-session failure lessons, staleness detection, KV-cache-friendly prompting |
