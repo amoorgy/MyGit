@@ -22,3 +22,6 @@ dist/
 
 # Logs
 *.log
+
+# Video source files (converted to mp4 for the repo)
+*.mov

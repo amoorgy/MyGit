@@ -8,7 +8,7 @@
 ![Local LLM](https://img.shields.io/badge/Local%20LLM-Ollama%20Ready-orange)
 ![Privacy](https://img.shields.io/badge/Privacy-Offline%20First-purple)
 
-![MyGit preview](docs/assets/final.gif)
+<video src="docs/assets/final.mp4" autoplay loop muted playsinline width="100%"></video>
 
 ---
 
@@ -224,6 +224,17 @@ Even though this project does not run longer tasks and mainly focuses on small i
 This also ties into why RAG because again you need to clue in "bad models" so that they can get you the best results before hallucination kicks in or just straight up no instruction following.
 
 In the future I may implement the ideas of harness engineering even more where it looks more into how you pass over to a new agent when you "can tell" that the current model is no longer at its best capacity and this could be very useful for something like pr reviews which if achievable at a high quality with smaller models would be pretty cool.
+
+---
+
+## Known Issues & Model Recommendations
+
+- **Instruction Following:** Very small local models (<7B) can sometimes struggle with strict JSON tool-call formatting or complex instruction following. If you see the agent looping without progressing, try clearing the session or upgrading models (Pro Tip: you could use something like Ollama Cloud Models to try it out with GLM-5 US hosted models or something similar usage limit is pretty good).
+- **Model Recommendations:** The `qwen3.5` family of models are incredibly good at the moment for this codebase and agent structure. Using cloud-hosted models (like Claude, OpenAI, or DeepSeek) or connecting Ollama to your own strong local/cloud instances yields fantastic reliability.
+- **Terminal Resizing:** Because the TUI is built with React Ink, aggressively resizing your terminal window while the agent is streaming text might cause visual layout glitches.
+- **Massive Repositories:** For gigabyte-sized monorepos, `mygit init` indexing can take a bit longer, and you might need to adjust `retrievalTopK` in your config to prevent blowing past the context window of smaller local models.
+- **Feature Polish & Technical Debt:** Some features might feel a bit rough around the edges or not the best right now. I intentionally left some technical debt to get the core project out the door—this helps me figure out what how to progress faster so I don't hit the "rebuild the infrastructure loop".
+
 
 ---
 
