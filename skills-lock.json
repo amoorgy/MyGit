@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "expo-tailwind-setup": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "computedHash": "d39e806942fe880347f161056729b588a3cb0f1796270eebf52633fe11cfdce1"
+    },
+    "ink-layout-styling": {
+      "source": "thebushidocollective/han",
+      "sourceType": "github",
+      "computedHash": "8fb60b8ed37bbd12ed03cefa4dee05cbc6f14a77173794793703ce6c94c2135b"
+    }
+  }
+}

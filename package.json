@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.2.63",
+    "@langchain/core": "^1.1.29",
+    "@langchain/langgraph": "^1.2.0",
+    "@langchain/openai": "^1.2.11",
+    "@xenova/transformers": "^2.17.2",
+    "langchain": "^1.2.28",
+    "langsmith": "^0.5.7",
+    "zod": "^4.3.6"
+  }
+}

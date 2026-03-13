@@ -1,0 +1,149 @@
+{
+  "version": "v1",
+  "fixtures": [
+    {
+      "id": "fx_clean_unindexed",
+      "summary": "Clean working tree, no repo index yet, no shard docs, no MYGIT memory file.",
+      "repo_state": "clean",
+      "indexed": false,
+      "memory": "absent",
+      "knowledge": "absent",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_clean_indexed",
+      "summary": "Clean working tree with .mygit index and knowledge map already built.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "absent",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_clean_indexed_memory",
+      "summary": "Clean indexed repo with AGENTS map, shard docs, and MYGIT memory present.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_dirty_indexed",
+      "summary": "Dirty working tree with indexed context and no GitHub auth requirement.",
+      "repo_state": "dirty",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_dirty_unindexed",
+      "summary": "Dirty working tree before `mygit init` has been run.",
+      "repo_state": "dirty",
+      "indexed": false,
+      "memory": "absent",
+      "knowledge": "absent",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_auth_indexed",
+      "summary": "Indexed repo with valid GitHub token and PR commands available.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": true,
+      "pr_context": true,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_no_auth_indexed",
+      "summary": "Indexed repo without GitHub auth; PR commands should explain missing credentials.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": true,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_conflict_indexed",
+      "summary": "Indexed repo with active merge conflicts in the working tree.",
+      "repo_state": "conflicted",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": true,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_worktree_multi",
+      "summary": "Indexed repo with multiple worktrees already configured.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "multiple"
+    },
+    {
+      "id": "fx_pr_open_auth",
+      "summary": "Indexed repo with GitHub auth and an open pull request available for list/review/post flows.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": true,
+      "pr_context": true,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_long_history",
+      "summary": "Indexed repo with a long chat history that can trigger compaction behavior.",
+      "repo_state": "clean",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    },
+    {
+      "id": "fx_push_rejected",
+      "summary": "Indexed repo where a push was rejected and the assistant needs to recommend a safe fetch/merge path.",
+      "repo_state": "dirty",
+      "indexed": true,
+      "memory": "present",
+      "knowledge": "present",
+      "github_auth": false,
+      "pr_context": false,
+      "conflict_state": false,
+      "worktrees": "single"
+    }
+  ]
+}

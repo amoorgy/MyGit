@@ -1,0 +1,47 @@
+{
+  "name": "mygit",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "AI-powered Git CLI agent — React/Ink + LangChain edition",
+  "bin": {
+    "mygit": "./dist/index.js",
+    "git-brain": "./dist/git-brain.js"
+  },
+  "scripts": {
+    "dev": "bun run index.tsx",
+    "build": "bun build index.tsx --compile --outfile dist/mygit",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "@langchain/core": "^0.3.0",
+    "@langchain/google-genai": "^0.1.0",
+    "@langchain/langgraph": "^0.2.0",
+    "@langchain/ollama": "^0.1.0",
+    "@langchain/openai": "^0.3.0",
+    "chalk": "^5.4.0",
+    "commander": "^12.1.0",
+    "diff": "^8.0.3",
+    "execa": "^9.5.0",
+    "figures": "^6.1.0",
+    "ink": "^5.1.0",
+    "ink-markdown": "^1.0.4",
+    "ink-select-input": "^6.0.0",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^6.0.0",
+    "langsmith": "^0.5.7",
+    "marked": "^17.0.3",
+    "marked-terminal": "^7.3.0",
+    "react": "^18.3.1",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.9",
+    "@types/diff": "^8.0.0",
+    "@types/react": "^18.3.0",
+    "react-devtools-core": "^7.0.1",
+    "typescript": "^5.7.0",
+    "vitest": "^2.1.0"
+  }
+}
