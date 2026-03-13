@@ -16,7 +16,12 @@
 
 MyGit is a local-first developer assistant that keeps your Git workflows inside the terminal. Ask it to commit, review PRs, resolve merge conflicts, search history, or execute multi-step coding tasks — all with a permission-gated agent loop that shows its work before acting.
 
-It runs fully offline with Ollama, LM studio, HuggingFace or connects to any API-backed LLM. Context is built once with `MyGit init` and retrieved on every request, so you get fast, accurate answers without re-reading files every turn.
+You can also use it for git brain, a feature where even though its still in early stages. But you can use it to sync project state across agents, especially if you want to use different providers but you still want those MD's synced up while also keeping you in the loop when running long multiple agent setups.
+
+It runs fully offline/local with Ollama, LM studio, HuggingFace or connects to any API-backed LLM. Context is built once with `MyGit init` and retrieved on every request, so you get fast, accurate answers without re-reading files every turn.
+
+While the inspiration was always to know how current agentic coding agents work, it grew to a pretty cool tool that you can use to essentially replace any other git tool out there while still being decently reliable with smaller models.
+
 
 ![System Overview](docs/assets/project%20structure.png)
 
@@ -58,14 +63,27 @@ For full system diagrams and flow charts see [docs/architecture.md](docs/archite
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) 1.1+
+- [Bun](https://bun.sh) 1.1+ or Node.js
 - Git
 - One LLM provider: **Ollama** for local/offline use, or any API-backed provider
 
-### Setup
+### Install via NPM / Bun
+
+You can install the CLI globally via npm or bun:
 
 ```bash
-git clone <repo-url>
+# Using bun (recommended)
+bun install -g @amoorgy/mygit
+
+# Or using npm
+npm install -g @amoorgy/mygit
+```
+
+### Local Development Setup
+
+If you want to run it from source:
+```bash
+git clone https://github.com/your-username/MyGit.git
 cd MyGit/src-ts
 bun install
 
@@ -184,7 +202,30 @@ See [docs/configuration.md](docs/configuration.md) for the full reference.
 - [docs/architecture.md](docs/architecture.md) — full system diagrams and flow charts
 - [docs/development.md](docs/development.md) — contributor guide and module ownership
 - [docs/configuration.md](docs/configuration.md) — config hierarchy and all settings
-- [benchmarks/README.md](benchmarks/README.md) — benchmark taxonomy and scoring
+
+* benchmarks soon
+
+---
+
+## Architecture Inspiration
+
+These links were very useful in development of this tool and are the reason for this architecture of the project:
+
+- [OpenAI: Harness Engineering](https://openai.com/index/harness-engineering/
+)
+- [Anthropic: Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+
+Even though this project does not run longer tasks and mainly focuses on small issues, this way of getting the information was incredibly useful to make really small models really efficient since they were getting what they needed really fast without extra compute or effort.
+
+This also ties into why RAG because again you need to clue in "bad models" so that they can get you the best results before hallucination kicks in or just straight up no instruction following.
+
+In the future I may implement the ideas of harness engineering even more where it looks more into how you pass over to a new agent when you "can tell" that the current model is no longer at its best capacity and this could be very useful for something like pr reviews which if achievable at a high quality with smaller models would be pretty cool.
+
+---
+
+## Contributions
+
+Contributions are welcome! If you would like to contribute, please feel free to contact me directly or follow the norm: fork the repository, make your changes, and submit a pull request.
 
 ---
 

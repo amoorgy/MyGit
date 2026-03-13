@@ -5,6 +5,7 @@ import { conventionsCommand } from "./conventions.js";
 import { worktreeCommand } from "./worktree.js";
 import { prCommand } from "./pr.js";
 import { setupCommand } from "./setup.js";
+import { uninstallCommand } from "./uninstall.js";
 import { render } from "ink";
 import React from "react";
 import { App } from "../tui/App.js";
@@ -168,6 +169,9 @@ export function registerCommands(program: Command) {
 
     // Setup wizard
     program.addCommand(setupCommand());
+
+    // Uninstall utility
+    program.addCommand(uninstallCommand());
 
     // Config (subcommands: show, init, edit)
     const configCmd = program

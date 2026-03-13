@@ -1,15 +1,18 @@
 {
-  "name": "mygit",
-  "version": "0.1.0",
+  "name": "@amoorgy/mygit",
+  "version": "0.1.1",
   "type": "module",
   "description": "AI-powered Git CLI agent — React/Ink + LangChain edition",
   "bin": {
-    "mygit": "./dist/index.js",
-    "git-brain": "./dist/git-brain.js"
+    "mygit": "bin/mygit.js"
   },
+  "files": [
+    "dist/index.js",
+    "bin"
+  ],
   "scripts": {
     "dev": "bun run index.tsx",
-    "build": "bun build index.tsx --compile --outfile dist/mygit",
+    "build": "bun build index.tsx --target=bun --packages=external --outfile=dist/index.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },

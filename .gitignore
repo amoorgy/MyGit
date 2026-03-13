@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Build output
+dist/
+*.js.map
+
+# Runtime / temp
+*.tmp
+{filepath}.tmp
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+
+# Environment
+.env
+.env.local
+*.toml.local
+
+# Logs
+*.log
