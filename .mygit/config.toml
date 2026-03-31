@@ -1,0 +1,78 @@
+provider = "ollama"
+
+[agent]
+automationLevel = "safe"
+maxIterations = 15
+showThinking = false
+planningMode = "show_and_approve"
+
+  [agent.permissions]
+  shellCommands = "ask"
+  fileWrites = "ask"
+  destructiveGit = "ask"
+
+  [agent.confirmation]
+  autoApproveSafe = true
+  requireDoubleConfirm = false
+
+  [agent.shell]
+  allowlist = [ ]
+
+[ollama]
+url = "http://localhost:11434"
+model = "glm-5:cloud"
+temperature = 0.4
+contextWindow = 16_384
+
+[google]
+apiKey = ""
+model = "gemini-2.0-flash"
+
+[api]
+activeService = "lmstudio"
+apiKeys = { }
+
+  [api.models]
+  anthropic = "claude-sonnet-4-20250514"
+  openai = "gpt-4o"
+  deepseek = "deepseek-chat"
+  moonshot = "moonshot-v1-128k"
+  groq = "llama-3.3-70b-versatile"
+  cerebras = "llama-3.3-70b"
+  openrouter = "anthropic/claude-sonnet-4"
+  gemini = "gemini-2.0-flash"
+  ouro = "mlx-community/Ouro-2.6B-4bit"
+  lmstudio = "local-model"
+
+[transformer]
+model = "ByteDance/Ouro-2.6B"
+serverUrl = "http://localhost:8080"
+temperature = 0.4
+
+[ui]
+theme = "nebula_pulse"
+mouseEnabled = true
+
+[learning]
+enabled = true
+minFrequency = 3
+confidenceThreshold = 0.6
+memoryScope = "repo"
+
+[smartMerge]
+enabled = true
+
+[context]
+enabled = true
+autoIndex = true
+retrievalTopK = 5
+contextBudgetRatio = 0.25
+
+[github]
+token = ""
+apiUrl = "https://api.github.com"
+defaultOwner = ""
+defaultRepo = ""
+reviewAutoPost = false
+reviewPostMinSeverity = "major"
+prInboxDefaultState = "all"
