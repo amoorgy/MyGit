@@ -8,21 +8,33 @@
 ![Local LLM](https://img.shields.io/badge/Local%20LLM-Ollama%20Ready-orange)
 ![Privacy](https://img.shields.io/badge/Privacy-Offline%20First-purple)
 
-<video src="docs/assets/final.mp4" autoplay loop muted playsinline width="100%"></video>
+<!-- Demo video: provide a direct link and an HTML5 player fallback (some renderers sanitize video tags) -->
+
+[Download / view the demo video](docs/assets/final.mp4)
+
+<details>
+<summary>Play demo (if supported)</summary>
+
+<video controls loop muted playsinline width="100%">
+  <source src="docs/assets/final.mp4" type="video/mp4">
+  Your browser does not support the video tag. You can download the video here: <a href="docs/assets/final.mp4">Download demo video</a>.
+</video>
+
+</details>
 
 ---
 
 ## What is MyGit
 
-MyGit is a local-first developer assistant that keeps your Git workflows inside the terminal. Ask it to commit, review PRs, resolve merge conflicts, search history, or execute multi-step coding tasks — all with a permission-gated agent loop that shows its work before acting.
+MyGit is a local-first developer assistant that keeps your Git workflows inside the terminal. Ask it to commit, review PRs, resolve merge conflicts, search history, or execute multi-step coding ta[...]
 
-You can also use it for git brain, a feature where even though its still in early stages. But you can use it to sync project state across agents, especially if you want to use different providers but you still want those MD's synced up while also keeping you in the loop when running long multiple agent setups.
+You can also use it for git brain, a feature where even though its still in early stages. But you can use it to sync project state across agents, especially if you want to use different providers [...]
 
-It runs fully offline/local with Ollama, LM studio, HuggingFace or connects to any API-backed LLM. Context is built once with `MyGit init` and retrieved on every request, so you get fast, accurate answers without re-reading files every turn.
+It runs fully offline/local with Ollama, LM studio, HuggingFace or connects to any API-backed LLM. Context is built once with `MyGit init` and retrieved on every request, so you get fast, accurate[...]
 
-While the inspiration was always to know how current agentic coding agents work, it grew to a pretty cool tool that you can use to essentially replace any other git tool out there while still being decently reliable with smaller models.
+While the inspiration was always to know how current agentic coding agents work, it grew to a pretty cool tool that you can use to essentially replace any other git tool out there while still bein[...]
 
-I still need to do a lot more testing, especially with smaller models to see how far they can go compared to other SOTA models. So I am planning on doing some benchmarks with different tier models to kind of have a better understanding of some of the capabilities.
+I still need to do a lot more testing, especially with smaller models to see how far they can go compared to other SOTA models. So I am planning on doing some benchmarks with different tier models[...]
 
 But for now I wanted to both share the tool, and try to document the structure, and a bit of the [architecture inspiration](#architecture-inspiration).
 
@@ -51,13 +63,13 @@ But for now I wanted to both share the tool, and try to document the structure, 
 
 ## How It Works — Under the Hood
 
-**Agent loop**: Every request runs through a LangGraph StateGraph. MyGit gathers context (git state, memory, RAG results), calls the LLM, parses the action, checks permissions, and executes — looping back until the task is done or the budget is reached. Destructive actions always require explicit user approval.
+**Agent loop**: Every request runs through a LangGraph StateGraph. MyGit gathers context (git state, memory, RAG results), calls the LLM, parses the action, checks permissions, and executes — lo[...]
 
 ![Agent Loop](docs/assets/agent%20loop.png)
 
-**Smart context (RAG + knowledge)**: `MyGit init` builds a BM25 inverted index from your codebase and generates focused shard docs in `.MyGit/knowledge/`. On every request a multi-factor scorer selects the most relevant shards and RAG chunks, injects them into the prompt, and keeps the context window lean. Shards auto-refresh after checkpoints.
+**Smart context (RAG + knowledge)**: `MyGit init` builds a BM25 inverted index from your codebase and generates focused shard docs in `.MyGit/knowledge/`. On every request a multi-factor scorer se[...]
 
-**Session memory**: After each session, `/compact-save` or `MyGit brain save` writes a `Last` / `Next` summary to `.MyGit/MyGit.md`. The next session picks this up automatically in `gatherContext` — so a cleared conversation still knows the current project state. `.MyGit/FOCUS.md` lets you pin permanent high-priority instructions.
+**Session memory**: After each session, `/compact-save` or `MyGit brain save` writes a `Last` / `Next` summary to `.MyGit/MyGit.md`. The next session picks this up automatically in `gatherContext`[...]
 
 For full system diagrams and flow charts see [docs/architecture.md](docs/architecture.md).
 
@@ -219,21 +231,21 @@ These links were very useful in development of this tool and are the reason for 
 )
 - [Anthropic: Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 
-Even though this project does not run longer tasks and mainly focuses on small issues, this way of getting the information was incredibly useful to make really small models really efficient since they were getting what they needed really fast without extra compute or effort.
+Even though this project does not run longer tasks and mainly focuses on small issues, this way of getting the information was incredibly useful to make really small models really efficient since[...]
 
 This also ties into why RAG because again you need to clue in "bad models" so that they can get you the best results before hallucination kicks in or just straight up no instruction following.
 
-In the future I may implement the ideas of harness engineering even more where it looks more into how you pass over to a new agent when you "can tell" that the current model is no longer at its best capacity and this could be very useful for something like pr reviews which if achievable at a high quality with smaller models would be pretty cool.
+In the future I may implement the ideas of harness engineering even more where it looks more into how you pass over to a new agent when you "can tell" that the current model is no longer at its b[...]
 
 ---
 
 ## Known Issues & Model Recommendations
 
-- **Instruction Following:** Very small local models (<7B) can sometimes struggle with strict JSON tool-call formatting or complex instruction following. If you see the agent looping without progressing, try clearing the session or upgrading models (Pro Tip: you could use something like Ollama Cloud Models to try it out with GLM-5 US hosted models or something similar usage limit is pretty good).
-- **Model Recommendations:** The `qwen3.5` family of models are incredibly good at the moment for this codebase and agent structure. Using cloud-hosted models (like Claude, OpenAI, or DeepSeek) or connecting Ollama to your own strong local/cloud instances yields fantastic reliability.
+- **Instruction Following:** Very small local models (<7B) can sometimes struggle with strict JSON tool-call formatting or complex instruction following. If you see the agent looping without prog[...]
+- **Model Recommendations:** The `qwen3.5` family of models are incredibly good at the moment for this codebase and agent structure. Using cloud-hosted models (like Claude, OpenAI, or DeepSeek) o[...]
 - **Terminal Resizing:** Because the TUI is built with React Ink, aggressively resizing your terminal window while the agent is streaming text might cause visual layout glitches.
-- **Massive Repositories:** For gigabyte-sized monorepos, `mygit init` indexing can take a bit longer, and you might need to adjust `retrievalTopK` in your config to prevent blowing past the context window of smaller local models.
-- **Feature Polish & Technical Debt:** Some features might feel a bit rough around the edges or not the best right now. I intentionally left some technical debt to get the core project out the door—this helps me figure out what how to progress faster so I don't hit the "rebuild the infrastructure loop".
+- **Massive Repositories:** For gigabyte-sized monorepos, `mygit init` indexing can take a bit longer, and you might need to adjust `retrievalTopK` in your config to prevent blowing past the cont[...]
+- **Feature Polish & Technical Debt:** Some features might feel a bit rough around the edges or not the best right now. I intentionally left some technical debt to get the core project out the do[...]
 
 
 ---
